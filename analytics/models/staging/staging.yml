@@ -16,6 +16,16 @@ models:
         description: "The date the job posting was made."
       - name: job_salary
         description: "The salary information for the job posting."
+      - name: salary_min
+        description: "The minimum salary extracted from the job posting."
+      - name: salary_max
+        description: "The maximum salary extracted from the job posting."
+      - name: salary_avg
+        description: "The average salary calculated from the minimum and maximum salary."
+      - name: salary_period
+        description: "The pay period for the salary (e.g., per year, per hour)."
+      - name: salary_currency
+        description: "The currency of the salary (e.g., USD, EUR)."
       - name: job_schedule_type
         description: "The type of schedule for the job posting."
       - name: job_work_from_home
