@@ -1,0 +1,10 @@
+sources:
+  - name: jobs
+    database: raw
+    schema: jobs
+    description: "This is the source for the jobs data."
+    tables:
+      - name: raw_job_postings
+        description: "This table contains raw job postings data one row per posting."
+      - name: raw_job_skills
+        description: "This table contains raw job skills data one row per skill."

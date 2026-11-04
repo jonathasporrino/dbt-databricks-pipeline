@@ -1,0 +1,41 @@
+models:
+  - name: stg_job_postings
+    description: One row per scrape day - a job re-scraped across days keeps every now.
+    columns:
+      - name: job_id
+        description: "The unique identifier for the job posting."
+      - name: job_title
+        description: "The title of the job posting."
+      - name: company_name
+        description: "The name of the company that posted the job."
+      - name: job_location
+        description: "The location of the job posting."
+      - name: job_via
+        description: "The source of the job posting."
+      - name: job_posted_at
+        description: "The date the job posting was made."
+      - name: job_salary
+        description: "The salary information for the job posting."
+      - name: job_schedule_type
+        description: "The type of schedule for the job posting."
+      - name: job_work_from_home
+        description: "Indicates if the job allows working from home."
+      - name: job_extensions_raw
+        description: "Raw data for job extensions."
+      - name: searched_at
+        description: "The time the search was performed."
+      - name: search_date
+        description: "The date of the search."
+      - name: search_term
+        description: "The term that was searched for in job postings."
+      - name: search_location
+        description: "The location associated with the search."
+  - name: stg_job_skills
+    description: One row per scrape day - a job re-scraped across days keeps every now.
+    columns:
+      - name: job_id
+        description: "The unique identifier for the job posting."
+      - name: skill_id
+        description: "The unique identifier for the skill."
+      - name: skill_keyword
+        description: "Skill text as extracted, trimmed."
