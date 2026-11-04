@@ -20,8 +20,6 @@ models:
         description: "The type of schedule for the job posting."
       - name: job_work_from_home
         description: "Indicates if the job allows working from home."
-      - name: job_extensions_raw
-        description: "Raw data for job extensions."
       - name: searched_at
         description: "The time the search was performed."
       - name: search_date
@@ -30,6 +28,14 @@ models:
         description: "The term that was searched for in job postings."
       - name: search_location
         description: "The location associated with the search."
+      - name: has_health_insurance
+        description: Posting lists health insurance among its extensions.
+      - name: has_dental_insurance
+        description: Posting lists dental insurance among its extensions.
+      - name: has_no_degree_mentioned
+        description: Posting lists no degree mentioned among its extensions.
+      - name: has_paid_time_off
+        description: Posting lists paid time off among its extensions.
   - name: stg_job_skills
     description: One row per scrape day - a job re-scraped across days keeps every now.
     columns:
