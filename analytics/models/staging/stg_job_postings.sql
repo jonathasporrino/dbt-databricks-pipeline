@@ -22,7 +22,7 @@ cleaned as(
         job_title,
         trim(company_name) as company_name,
         job_location,
-        regexp_replace(job_via, '^via ', ''),
+        regexp_replace(job_via, '^via ', '') as source_platform,
         job_posted_at,
         job_schedule_type,
         job_work_from_home,

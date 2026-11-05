@@ -20,5 +20,8 @@ models:
     marts:
       +materialized: table
       +schema: marts
-flags:
-  require_generic_test_arguments_property: true
+  
+seeds:
+  analytics:
+      +schema: seeds
+

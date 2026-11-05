@@ -10,7 +10,7 @@ models:
         description: "The name of the company that posted the job."
       - name: job_location
         description: "The location of the job posting."
-      - name: job_via
+      - name: source_platform
         description: "The source of the job posting."
       - name: job_posted_at
         description: "The date the job posting was made."
