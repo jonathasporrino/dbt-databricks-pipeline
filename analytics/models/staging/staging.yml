@@ -4,6 +4,19 @@ models:
     columns:
       - name: job_id
         description: "The unique identifier for the job posting."
+      - name: search_term
+        description: "The term that was searched for in job postings."
+        data_tests:
+          - not_null        
+          - accepted_values:
+              arguments:
+                values: ['Data Engineer', 'Data Analyst', 'Data Scientist']
+      - name: search_date
+        description: "The date of the search."
+      - name: searched_at
+        description: "The time the search was performed."
+      - name: search_location
+        description: "The location associated with the search."
       - name: job_title
         description: "The title of the job posting."
       - name: company_name
@@ -12,32 +25,38 @@ models:
         description: "The location of the job posting."
       - name: source_platform
         description: "The source of the job posting."
+      - name: job_schedule_type
+        description: >
+          As scraped; 12,252 nulls stay null (documented, not fixed). 17 distinct values in
+          the wild, including combos like 'Full-time and Part-time' (25,242 rows), so the naive
+          four-value test below fails 28,776 rows by design: the 3.09.2 finding, kept visible at
+          warn severity instead of silently "fixed".
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Part-time', 'Full-time', 'Contract', 'Internship']
+              config:
+                severity: warn
+      - name: job_work_from_home
+        description: "Indicates if the job allows working from home."
       - name: job_posted_at
         description: "The date the job posting was made."
       - name: job_salary
         description: "The salary information for the job posting."
       - name: salary_min
         description: "The minimum salary extracted from the job posting."
+        data_tests:
+          - non_negative
       - name: salary_max
         description: "The maximum salary extracted from the job posting."
+        data_tests:
+          - non_negative
       - name: salary_avg
         description: "The average salary calculated from the minimum and maximum salary."
       - name: salary_period
         description: "The pay period for the salary (e.g., per year, per hour)."
       - name: salary_currency
         description: "The currency of the salary (e.g., USD, EUR)."
-      - name: job_schedule_type
-        description: "The type of schedule for the job posting."
-      - name: job_work_from_home
-        description: "Indicates if the job allows working from home."
-      - name: searched_at
-        description: "The time the search was performed."
-      - name: search_date
-        description: "The date of the search."
-      - name: search_term
-        description: "The term that was searched for in job postings."
-      - name: search_location
-        description: "The location associated with the search."
       - name: has_health_insurance
         description: Posting lists health insurance among its extensions.
       - name: has_dental_insurance
@@ -46,6 +65,7 @@ models:
         description: Posting lists no degree mentioned among its extensions.
       - name: has_paid_time_off
         description: Posting lists paid time off among its extensions.
+
   - name: stg_job_skills
     description: One row per scrape day - a job re-scraped across days keeps every now.
     columns:

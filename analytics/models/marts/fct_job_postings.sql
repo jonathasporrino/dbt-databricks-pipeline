@@ -22,3 +22,7 @@ SELECT
     has_paid_time_off,
     has_no_degree_mentioned
 FROM job_postings
+qualify row_number() over (
+    partition by job_id 
+    order by searched_at desc
+) = 1

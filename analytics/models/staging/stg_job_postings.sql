@@ -9,6 +9,7 @@ with source as (
   select *
   from {{ source('jobs', 'raw_job_postings') }}
   where error is not true
+  and job_id is not null
 ),
 parsed as (
     select 

@@ -5,14 +5,14 @@ models:
       re-scrapes update in place, new jobs insert.
     config:
       meta:
-        owner: luke
+        owner: Jonathas Porrino
         tier: gold
     columns:
       - name: job_id
         description: Posting id from the scraper; the grain and the merge key.
-        #data_tests:
-         # - not_null
-          #- unique
+        data_tests:
+         - not_null
+         - unique
       - name: job_title
         description: Title as posted.
       - name: search_term
@@ -22,6 +22,7 @@ models:
       - name: company_name
         description: Employer, trimmed upstream; natural key into dim_company.
         data_tests:
+          - not_null
           - relationships:
               arguments:
                 to: ref('dim_company')
@@ -81,9 +82,9 @@ models:
     columns:
       - name: skill_id
         description: Skill key from the seed.
-        #data_tests:
-         # - not_null
-         # - unique
+        data_tests:
+          - not_null
+          - unique
       - name: display_name
         description: Human-readable skill name.
       - name: category
