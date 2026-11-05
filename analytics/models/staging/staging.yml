@@ -75,3 +75,35 @@ models:
         description: "The unique identifier for the skill."
       - name: skill_keyword
         description: "Skill text as extracted, trimmed."
+
+unit_tests:
+  - name: test_parse_salary_shape
+    description: "this handles a range, a single value, and no salary at all"
+    model: stg_job_postings
+    given:
+      - input: source('jobs', 'raw_job_postings')
+        rows:
+          # the macro splits on an en-dash (–), not a hyphen, matching the scraper's text
+          - {job_id: 1, job_salary: "100K–186K a year"}
+          - {job_id: 2, job_salary: "32.50 an hour"}
+          - {job_id: 3, job_salary: null}
+    expect:
+      rows:
+        - {job_id: 1, salary_min: 100000, salary_max: 186000}
+        - {job_id: 2, salary_min: 32.50, salary_max: 32.50}
+        - {job_id: 3, salary_min: null, salary_max: null}
+
+  - name: test_extension_flags
+    description: "extension flags are true/false when the list parses, null when there is no list"
+    model: stg_job_postings
+    given:
+      - input: source('jobs', 'raw_job_postings')
+        rows:
+          - {job_id: 1, job_extensions_raw: '["Health insurance", "Paid time off"]'}
+          - {job_id: 2, job_extensions_raw: '[]'}
+          - {job_id: 3, job_extensions_raw: null}
+    expect:
+      rows:
+        - {job_id: 1, has_health_insurance: true, has_dental_insurance: false, has_paid_time_off: true, has_no_degree_mentioned: false}
+        - {job_id: 2, has_health_insurance: false, has_dental_insurance: false, has_paid_time_off: false, has_no_degree_mentioned: false}
+        - {job_id: 3, has_health_insurance: null, has_dental_insurance: null, has_paid_time_off: null, has_no_degree_mentioned: null}
