@@ -3,7 +3,7 @@
 [![dbt Docs](https://img.shields.io/badge/dbt_docs-live-blue)](https://lukebarousse.github.io/dbt_Analytics_Engineering_Course/project2/)
 ![Databricks](https://img.shields.io/badge/warehouse-Databricks-FF3621)
 
-![P2 pipeline architecture](p2_pipeline.png)
+![P2 pipeline architecture](img/p2_pipeline.png)
 
 A production dbt pipeline on **Databricks** over 843,097 raw job-posting scrapes, rebuilt nightly by a scheduled job with zero secrets.
 
@@ -78,7 +78,7 @@ The marts keep each job's **latest** scrape — the snapshot table keeps **every
 
 Structure, tests, and column descriptions were written along the way — the docs site is a rendering of work already done:
 
-**→ [lukebarousse.github.io/dbt_Analytics_Engineering_Course/project2/](https://lukebarousse.github.io/dbt_Analytics_Engineering_Course/project2/)**
+**→ [https://github.com/jonathasporrino/dbt-databricks-pipeline](https://jonathasporrino.github.io/dbt-databricks-pipeline/)**
 
 The site shows:
 
